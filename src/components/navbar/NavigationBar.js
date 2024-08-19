@@ -11,10 +11,11 @@ const NavigationBar = () => {
         <Nav className="mr-auto">
           <Nav.Link as={Link} to="/">Home</Nav.Link>
           <Nav.Link as={Link} to="/pre-school">Pre-School</Nav.Link>
-          <Nav.Link as={Link} to="/primary">Primary</Nav.Link>
+          <Nav.Link as={Link} to="/lower-primary">Primary</Nav.Link>
+          <Nav.Link as={Link} to="/upper-primary">Primary</Nav.Link>
           <Nav.Link as={Link} to="/secondary">Secondary</Nav.Link>
           <Nav.Link as={Link} to="/college">College</Nav.Link>
-          <Nav.Link as={Link} to="/contacts">Contacts</Nav.Link>
+          {/* <Nav.Link as={Link} to="/contacts">Contacts</Nav.Link> */}
         </Nav>
         <Form inline>
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
