@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios'; // for making HTTP requests
+
 import { Form, Button, Container, Row, Col, Dropdown, DropdownButton } from 'react-bootstrap';
 
 const LowerPrimaryForm = () => {
@@ -27,10 +29,30 @@ const LowerPrimaryForm = () => {
     setFormData({ ...formData, classGrade: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log(formData);
+  
+    try {
+      // Prepare form data object
+      const formData = {
+        firstName: e.target.firstName.value,
+        otherNames: e.target.otherNames.value,
+        classGrade: e.target.classGrade.value, // Assuming classGrade is set correctly
+        phoneNumber: e.target.phoneNumber.value,
+        email: e.target.email.value,
+      };
+  
+      // Send POST request to backend
+      const response = await axios.post('/api/submit-form', formData);
+      console.log(response.data); // For debugging
+  
+      // Handle successful submission
+      alert('Form submitted successfully!');
+  
+    } catch (error) {
+      console.error(error);
+      alert('Failed to submit form! Please try again.');
+    }
   };
 
   return (

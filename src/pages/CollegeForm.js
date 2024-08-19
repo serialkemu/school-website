@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import axios from 'axios'; // for making HTTP requests
+
 import { Form, Button, Container, Row, Col, Dropdown, DropdownButton } from 'react-bootstrap';
 
 const CollegeForm = () => {
   const [formData, setFormData] = useState({
     firstName: '',
-    lastName: '',
+    otherNames: '',
     idNumber: '',
     course: '',
     phoneNumber: '',
@@ -28,10 +30,34 @@ const CollegeForm = () => {
     setFormData({ ...formData, course: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log(formData);
+  
+    try {
+      // Prepare form data object
+      const formDataToSend = {
+        firstName: formData.firstName,
+        otherNames: formData.otherNames,
+        idNumber: formData.idNumber,
+        course: formData.course,
+        phoneNumber: formData.phoneNumber,
+        email: formData.email,
+      };
+  
+      // Log the data before sending the request for debugging
+      console.log("Form data to send:", formDataToSend);
+  
+      // Send POST request to backend
+      const response = await axios.post('http://localhost:5000/api/submit-form', formDataToSend);
+      console.log(response.data); // For debugging
+  
+      // Handle successful submission
+      alert('Form submitted successfully!');
+  
+    } catch (error) {
+      console.error(error);
+      alert('Failed to submit form! Please try again.');
+    }
   };
 
   return (
@@ -52,12 +78,12 @@ const CollegeForm = () => {
             </Form.Group>
           </Col>
           <Col>
-            <Form.Group controlId="formLastName">
+            <Form.Group controlId="formotherNames">
               <Form.Label>Last Name</Form.Label>
               <Form.Control
                 type="text"
-                name="lastName"
-                value={formData.lastName}
+                name="otherNames"
+                value={formData.otherNames}
                 onChange={handleInputChange}
                 placeholder="Enter your last name"
               />
@@ -120,7 +146,7 @@ const CollegeForm = () => {
             </Form.Group>
           </Col>
         </Row>
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" >
           Submit Application
         </Button>
       </Form>
