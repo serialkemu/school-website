@@ -11,15 +11,21 @@ const CollegeForm = () => {
     email: '',
   });
 
-  const courses = [ // Replace with your actual course options
+  const courses = [
     'Computer Science',
     'Mathematics',
     'Engineering',
   ];
 
-  const handleChange = (e) => {
+  // Handle text input changes
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  // Handle dropdown selection
+  const handleSelect = (value) => {
+    setFormData({ ...formData, course: value });
   };
 
   const handleSubmit = (e) => {
@@ -40,7 +46,7 @@ const CollegeForm = () => {
                 type="text"
                 name="firstName"
                 value={formData.firstName}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 placeholder="Enter your first name"
               />
             </Form.Group>
@@ -52,7 +58,7 @@ const CollegeForm = () => {
                 type="text"
                 name="lastName"
                 value={formData.lastName}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 placeholder="Enter your last name"
               />
             </Form.Group>
@@ -66,7 +72,7 @@ const CollegeForm = () => {
                 type="text"
                 name="idNumber"
                 value={formData.idNumber}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 placeholder="Enter your ID number"
               />
             </Form.Group>
@@ -77,11 +83,10 @@ const CollegeForm = () => {
               <DropdownButton
                 id="dropdown-basic-button"
                 title={formData.course || "Select Course"}
-                onSelect={handleChange}
-                name="course"
+                onSelect={handleSelect}
               >
                 {courses.map((course) => (
-                  <Dropdown.Item key={course} value={course}>
+                  <Dropdown.Item key={course} eventKey={course}>
                     {course}
                   </Dropdown.Item>
                 ))}
@@ -97,7 +102,7 @@ const CollegeForm = () => {
                 type="tel"
                 name="phoneNumber"
                 value={formData.phoneNumber}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 placeholder="Enter your phone number"
               />
             </Form.Group>
@@ -109,7 +114,7 @@ const CollegeForm = () => {
                 type="email"
                 name="email"
                 value={formData.email}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 placeholder="Enter your email"
               />
             </Form.Group>

@@ -11,8 +11,8 @@ const NavigationBar = () => {
         <Nav className="mr-auto">
           <Nav.Link as={Link} to="/">Home</Nav.Link>
           <Nav.Link as={Link} to="/pre-school">Pre-School</Nav.Link>
-          <Nav.Link as={Link} to="/lower-primary">Primary</Nav.Link>
-          <Nav.Link as={Link} to="/upper-primary">Primary</Nav.Link>
+          <Nav.Link as={Link} to="/lower-primary">Lower Primary</Nav.Link>
+          <Nav.Link as={Link} to="/upper-primary">Upper Primary</Nav.Link>
           <Nav.Link as={Link} to="/secondary">Secondary</Nav.Link>
           <Nav.Link as={Link} to="/college">College</Nav.Link>
           {/* <Nav.Link as={Link} to="/contacts">Contacts</Nav.Link> */}

@@ -10,15 +10,21 @@ const UpperPrimaryForm = () => {
     email: '',
   });
 
-  const classes = [ // Replace with your actual class/grade options
+  const classes = [
     'Class 1',
     'Class 2',
     'Class 3',
   ];
 
-  const handleChange = (e) => {
+  // Handle text input changes
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  // Handle dropdown selection
+  const handleSelect = (value) => {
+    setFormData({ ...formData, classGrade: value });
   };
 
   const handleSubmit = (e) => {
@@ -39,7 +45,7 @@ const UpperPrimaryForm = () => {
                 type="text"
                 name="firstName"
                 value={formData.firstName}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 placeholder="Enter first name"
               />
             </Form.Group>
@@ -51,7 +57,7 @@ const UpperPrimaryForm = () => {
                 type="text"
                 name="otherNames"
                 value={formData.otherNames}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 placeholder="Enter other names"
               />
             </Form.Group>
@@ -64,11 +70,10 @@ const UpperPrimaryForm = () => {
               <DropdownButton
                 id="dropdown-basic-button"
                 title={formData.classGrade || "Select Class/Grade"}
-                onSelect={handleChange}
-                name="classGrade"
+                onSelect={handleSelect}
               >
                 {classes.map((className) => (
-                  <Dropdown.Item key={className} value={className}>
+                  <Dropdown.Item key={className} eventKey={className}>
                     {className}
                   </Dropdown.Item>
                 ))}
@@ -82,7 +87,7 @@ const UpperPrimaryForm = () => {
                 type="tel"
                 name="phoneNumber"
                 value={formData.phoneNumber}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 placeholder="Enter phone number"
               />
             </Form.Group>
@@ -96,7 +101,7 @@ const UpperPrimaryForm = () => {
                 type="email"
                 name="email"
                 value={formData.email}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 placeholder="Enter email"
               />
             </Form.Group>

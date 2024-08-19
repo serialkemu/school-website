@@ -10,16 +10,22 @@ const PreSchoolForm = () => {
     email: '',
   });
 
-  const classes = [ // Replace with your actual class/grade options
+  const classes = [
     'Nursery 1',
     'Nursery 2',
     'Playgroup',
     'Kindergarten',
   ];
 
-  const handleChange = (e) => {
+  // Handle text input changes
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  // Handle dropdown selection
+  const handleSelect = (value) => {
+    setFormData({ ...formData, classGrade: value });
   };
 
   const handleSubmit = (e) => {
@@ -40,7 +46,7 @@ const PreSchoolForm = () => {
                 type="text"
                 name="firstName"
                 value={formData.firstName}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 placeholder="Enter first name"
               />
             </Form.Group>
@@ -52,7 +58,7 @@ const PreSchoolForm = () => {
                 type="text"
                 name="otherNames"
                 value={formData.otherNames}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 placeholder="Enter other names"
               />
             </Form.Group>
@@ -65,11 +71,10 @@ const PreSchoolForm = () => {
               <DropdownButton
                 id="dropdown-basic-button"
                 title={formData.classGrade || "Select Class/Grade"}
-                onSelect={handleChange}
-                name="classGrade"
+                onSelect={handleSelect}
               >
                 {classes.map((className) => (
-                  <Dropdown.Item key={className} value={className}>
+                  <Dropdown.Item key={className} eventKey={className}>
                     {className}
                   </Dropdown.Item>
                 ))}
@@ -83,7 +88,7 @@ const PreSchoolForm = () => {
                 type="tel"
                 name="phoneNumber"
                 value={formData.phoneNumber}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 placeholder="Enter phone number"
               />
             </Form.Group>
@@ -97,7 +102,7 @@ const PreSchoolForm = () => {
                 type="email"
                 name="email"
                 value={formData.email}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 placeholder="Enter email"
               />
             </Form.Group>
