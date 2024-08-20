@@ -32,18 +32,9 @@ const UpperPrimaryForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    try {
-      // Prepare form data object
-      const formData = {
-        firstName: e.target.firstName.value,
-        otherNames: e.target.otherNames.value,
-        classGrade: e.target.classGrade.value, // Assuming classGrade is set correctly
-        phoneNumber: e.target.phoneNumber.value,
-        email: e.target.email.value,
-      };
-  
+    try { 
       // Send POST request to backend
-      const response = await axios.post('/api/submit-form', formData);
+      const response = await axios.post('http://localhost:5000/api/upper-primary', formData);
       console.log(response.data); // For debugging
   
       // Handle successful submission
@@ -54,7 +45,7 @@ const UpperPrimaryForm = () => {
       alert('Failed to submit form! Please try again.');
     }
   };
-
+  
   return (
     <Container className="mt-4">
       <h2>Upper Primary Application Form</h2>

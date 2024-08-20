@@ -48,7 +48,7 @@ const CollegeForm = () => {
       console.log("Form data to send:", formDataToSend);
   
       // Send POST request to backend
-      const response = await axios.post('http://localhost:5000/api/submit-form', formDataToSend);
+      const response = await axios.post('http://localhost:5000/api/college', formDataToSend);
       console.log(response.data); // For debugging
   
       // Handle successful submission

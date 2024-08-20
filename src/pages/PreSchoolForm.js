@@ -32,19 +32,9 @@ const PreSchoolForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    try {
-    //   // Prepare form data object
-    //   const formData = {
-    //     firstName: e.target.firstName.value,
-    //     otherNames: e.target.otherNames.value,
-    //     idNumber: e.target.idNumber.value,
-    //     course: e.target.course.value,
-    //     phoneNumber: e.target.phoneNumber.value,
-    //     email: e.target.email.value,
-    //   };
-  
+    try { 
       // Send POST request to backend
-      const response = await axios.post('http://localhost:5000/api/submit-form', formData);
+      const response = await axios.post('http://localhost:5000/api/pre-school', formData);
       console.log(response.data); // For debugging
   
       // Handle successful submission
